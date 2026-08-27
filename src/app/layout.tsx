@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "Luminosity Candles | Acenda uma experiência",
-  description: "Velas aromáticas feitas com amor para transformar ambientes e criar momentos inesquecíveis.",
-  keywords: ["velas aromáticas BH", "velas perfumadas", "vela artesanal", "velas para presente"],
-  openGraph: {
-    title: "Luminosity Candles | Acenda uma experiência",
-    description: "Aromas que abraçam a alma. Encontre a vela que combina com o seu momento.",
-    locale: "pt_BR",
-    type: "website",
-  },
+  title: "MT Fight - Onde Campeões São Forjados",
+  description: "O maior centro de artes marciais de Belo Horizonte. Jiu-Jitsu, Muay Thai e Boxe. Treinamento Kids, Feminino e Método de Emagrecimento.",
+  keywords: "artes marciais BH, jiu-jitsu, muay thai, boxe, treino kids, treino feminino, emagrecimento, campeões",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className="bg-[#0a1628] text-white min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 pt-20">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }
