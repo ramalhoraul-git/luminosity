@@ -1,7 +1,7 @@
 "use client";
 
 export function WhatsAppButton() {
-  const phoneNumber = "5531994338005"; // +55 31 99433-8005
+  const phoneNumber = "5531994338005";
 
   return (
     <a
