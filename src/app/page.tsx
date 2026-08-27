@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 
 type IconName =
   | "arrow"
@@ -206,7 +207,7 @@ function whatsappUrl(message: string) {
 function Logo() {
   return (
     <a href="#inicio" className="brand-lockup" aria-label="Luminosity Candles, início">
-      <span className="brand-mark"><Icon name="sparkle" size={17} strokeWidth={1.2} /></span>
+      <span className="brand-mark"><Icon name="sparkle" size={19} strokeWidth={1.2} /></span>
       <span className="brand-name">Luminosity <em>Candles</em></span>
     </a>
   );
@@ -293,30 +294,86 @@ export default function HomePage() {
 
   return (
     <main className="site-shell" id="inicio">
-      <div className="promo-bar">
-        <span><Icon name="sparkle" size={14} /> Frete fixo de R$ 12,90 para todo o Brasil</span>
-        <span className="promo-secondary">Velas aromáticas feitas com amor <i>•</i> BH — MG</span>
+      {/* ============================================================
+      PROMO BAR — FRETE FIXO + VELAS AROMÁTICAS + BH
+      ============================================================ */}
+      <div className="promo-bar" style={{ backgroundColor: "#3b2e22", color: "#f5efe6", height: "31px", display: "flex", justifyContent: "center", alignItems: "center", gap: "32px", fontSize: "9px", fontWeight: 700, letterSpacing: "0.12em" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+          <Icon name="sparkle" size={14} /> Frete fixo de R$ 12,90 para todo o Brasil
+        </span>
+        <span style={{ opacity: 0.75, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+          Velas aromáticas feitas com amor <i style={{ color: "#d4af37", fontStyle: "normal", padding: "0 8px" }}>•</i> BH — MG
+        </span>
       </div>
 
-      <header className="site-header">
-        <div className="header-inner">
-          <Logo />
-          <nav className={`main-nav ${mobileMenuOpen ? "is-open" : ""}`} aria-label="Navegação principal">
-            <a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Início</a>
-            <a href="#velas" onClick={() => setMobileMenuOpen(false)}>Velas</a>
-            <a href="#aromas" onClick={() => setMobileMenuOpen(false)}>Aromas</a>
-            <a href="#kits" onClick={() => setMobileMenuOpen(false)}>Kits</a>
-            <a href="#presentes" onClick={() => setMobileMenuOpen(false)}>Presentes</a>
-            <a href="#sobre" onClick={() => setMobileMenuOpen(false)}>Sobre</a>
-            <a href="#contato" onClick={() => setMobileMenuOpen(false)}>Fale conosco</a>
+      {/* ============================================================
+      HEADER — LOGO + MENU + WHATSAPP
+      ============================================================ */}
+      <header className="site-header" style={{ position: "absolute", zIndex: 10, top: "31px", width: "100%", color: "#ffffff", borderBottom: "1px solid rgba(255,255,255,0.18)" }}>
+        <div className="header-inner" style={{ width: "min(1340px, calc(100% - 80px))", height: "82px", margin: "auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          
+          {/* LOGO — AUMENTADA EM 2CM DE ALTURA PROPORCIONAL */}
+          <a href="#inicio" className="brand-lockup" style={{ display: "inline-flex", alignItems: "center", gap: "12px", color: "inherit", whiteSpace: "nowrap" }}>
+            <span className="brand-mark" style={{ width: "40px", height: "40px", border: "1.5px solid currentColor", borderRadius: "50%", display: "inline-grid", placeItems: "center", color: "#d4af37" }}>
+              <Icon name="sparkle" size={20} strokeWidth={1.2} />
+            </span>
+            <span className="brand-name" style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "28px", letterSpacing: "0.04em", lineHeight: "1.1" }}>
+              Luminosity
+              <em style={{ display: "block", marginTop: "-4px", fontFamily: '"Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif', fontSize: "9px", fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.36em", textAlign: "center", opacity: 0.8 }}>Candles</em>
+            </span>
+          </a>
+
+          {/* MENU — CORRIGIDO (SEM "AGENDE SUA AULA" — É MT FIGHT) */}
+          <nav className="main-nav" style={{ display: "flex", alignItems: "center", gap: "29px", marginLeft: "auto", marginRight: "41px", fontSize: "11px", letterSpacing: "0.045em" }}>
+            <a href="#inicio" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>HOME</a>
+            <a href="#velas" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>VELAS</a>
+            <a href="#aromas" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>AROMAS</a>
+            <a href="#kits" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>KITS</a>
+            <a href="#presentes" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>PRESENTES</a>
+            <a href="#sobre" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>SOBRE</a>
+            <a href="#contato" style={{ opacity: 0.86, transition: "color 0.2s, opacity 0.2s" }}>FALE CONOSCO</a>
           </nav>
-          <div className="header-actions">
-            <button className="header-whatsapp" onClick={() => openWhatsApp()}><Icon name="message" size={17} /> <span>WhatsApp</span></button>
-            <button className="menu-toggle" onClick={() => setMobileMenuOpen((value) => !value)} aria-label="Abrir menu" aria-expanded={mobileMenuOpen}><Icon name={mobileMenuOpen ? "x" : "menu"} size={22} /></button>
+
+          {/* WHATSAPP BUTTON — CORRETO */}
+          <div className="header-actions" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <button 
+              className="header-whatsapp" 
+              onClick={() => openWhatsApp()}
+              style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "11px 16px", border: "1px solid #d4af37", background: "transparent", color: "#ffffff", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", transition: "0.2s", cursor: "pointer" }}
+            >
+              <Icon name="message" size={17} /> <span>WhatsApp</span>
+            </button>
+            <button 
+              className="menu-toggle" 
+              onClick={() => setMobileMenuOpen((value) => !value)} 
+              aria-label="Abrir menu" 
+              aria-expanded={mobileMenuOpen}
+              style={{ display: "none", border: 0, color: "inherit", background: "transparent", cursor: "pointer" }}
+            >
+              <Icon name={mobileMenuOpen ? "x" : "menu"} size={22} />
+            </button>
           </div>
         </div>
+
+        {/* MENU MOBILE */}
+        {mobileMenuOpen && (
+          <div style={{ position: "absolute", top: "82px", left: 0, right: 0, background: "#3b2e22", padding: "20px 24px", borderTop: "1px solid rgba(255,255,255,0.13)" }}>
+            <nav style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <a href="#inicio" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>HOME</a>
+              <a href="#velas" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>VELAS</a>
+              <a href="#aromas" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>AROMAS</a>
+              <a href="#kits" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>KITS</a>
+              <a href="#presentes" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>PRESENTES</a>
+              <a href="#sobre" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>SOBRE</a>
+              <a href="#contato" onClick={() => setMobileMenuOpen(false)} style={{ color: "#fff", padding: "10px 0" }}>FALE CONOSCO</a>
+            </nav>
+          </div>
+        )}
       </header>
 
+      {/* ============================================================
+      HERO SECTION
+      ============================================================ */}
       <section className="hero-section">
         <div className="hero-image" aria-hidden="true" />
         <div className="hero-overlay" />
@@ -455,12 +512,33 @@ export default function HomePage() {
         <div className="content-width contact-inner"><div className="contact-copy"><div className="section-kicker light-kicker">09 / estamos aqui</div><h2>Ainda está em dúvida?</h2><p>Escolher uma fragrância pode ser uma experiência pessoal. Nossa equipe pode ajudar você a encontrar a vela que combina com o seu momento — ou com quem você deseja presentear.</p><button className="button button-gold" onClick={() => openWhatsApp("Olá! ✨ Vim pelo site da Luminosity e gostaria de conversar com vocês.")}>Falar com a Luminosity <Icon name="arrow" size={17} /></button></div><div className="contact-orbit"><span className="orbit-word">acenda</span><span className="orbit-circle"><Icon name="sparkle" size={28} /></span><span className="orbit-word orbit-bottom">sua experiência</span></div></div>
       </section>
 
-      <footer className="site-footer"><div className="content-width"><div className="footer-top"><div className="footer-brand"><Logo /><p>Velas aromáticas feitas com amor.<br />Para iluminar o que importa.</p><div className="footer-location"><span><Icon name="leaf" size={16} /> BH — MG</span><span><Icon name="bag" size={16} /> Enviamos para todo o Brasil</span></div></div><div className="footer-col"><h4>Navegação</h4><a href="#inicio">Início</a><a href="#velas">Velas</a><a href="#aromas">Aromas</a><a href="#kits">Kits</a><a href="#presentes">Presentes</a></div><div className="footer-col"><h4>Atendimento</h4><button onClick={() => openWhatsApp()}>WhatsApp</button><a href="https://instagram.com/luminositycandles" target="_blank" rel="noreferrer">Instagram</a><a href="#faq">Perguntas frequentes</a><a href="/admin">Área de gestão</a></div><div className="footer-cta"><span>um convite</span><strong>Acenda sua<br /><em>experiência.</em></strong><button onClick={() => openWhatsApp()}>Falar com a gente <Icon name="arrow" size={16} /></button></div></div><div className="footer-bottom"><span>© 2024 Luminosity Candles. Todos os direitos reservados.</span><span>Privacidade &nbsp;·&nbsp; Termos</span><span>feito com intenção <Icon name="heart" size={13} /></span></div></div></footer>
+      <footer className="site-footer"><div className="content-width"><div className="footer-top"><div className="footer-brand">
+        <a href="#inicio" className="brand-lockup" style={{ display: "inline-flex", alignItems: "center", gap: "12px", color: "inherit", whiteSpace: "nowrap" }}>
+          <span className="brand-mark" style={{ width: "38px", height: "38px", border: "1.5px solid currentColor", borderRadius: "50%", display: "inline-grid", placeItems: "center", color: "#d4af37" }}>
+            <Icon name="sparkle" size={19} strokeWidth={1.2} />
+          </span>
+          <span className="brand-name" style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "26px", letterSpacing: "0.04em", lineHeight: "1.1" }}>
+            Luminosity
+            <em style={{ display: "block", marginTop: "-4px", fontFamily: '"Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif', fontSize: "8px", fontStyle: "normal", textTransform: "uppercase", letterSpacing: "0.36em", textAlign: "center", opacity: 0.8 }}>Candles</em>
+          </span>
+        </a>
+        <p style={{ marginTop: "16px", color: "rgba(245,239,230,0.62)", fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "17px", lineHeight: "1.25" }}>Velas aromáticas feitas com amor.<br />Para iluminar o que importa.</p>
+        <div className="footer-location" style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "27px", color: "rgba(245,239,230,0.52)", fontSize: "10px" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: "8px" }}><Icon name="leaf" size={16} /> BH — MG</span>
+          <span style={{ display: "flex", alignItems: "center", gap: "8px" }}><Icon name="bag" size={16} /> Enviamos para todo o Brasil</span>
+        </div>
+      </div><div className="footer-col"><h4 style={{ margin: "0 0 6px", color: "#e2c875", fontSize: "9px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>Navegação</h4><a href="#inicio" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Início</a><a href="#velas" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Velas</a><a href="#aromas" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Aromas</a><a href="#kits" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Kits</a><a href="#presentes" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Presentes</a></div><div className="footer-col"><h4 style={{ margin: "0 0 6px", color: "#e2c875", fontSize: "9px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>Atendimento</h4><button onClick={() => openWhatsApp()} style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px", cursor: "pointer" }}>WhatsApp</button><a href="https://instagram.com/luminositycandles" target="_blank" rel="noreferrer" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Instagram</a><a href="#faq" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Perguntas frequentes</a><a href="/admin" style={{ padding: 0, border: 0, background: "transparent", color: "rgba(245,239,230,0.68)", fontSize: "11px" }}>Área de gestão</a></div><div className="footer-cta" style={{ borderLeft: "1px solid rgba(245,239,230,0.16)", paddingLeft: "33px" }}><span style={{ display: "block", marginBottom: "18px", color: "#d4af37", fontSize: "9px", letterSpacing: "0.18em", textTransform: "uppercase" }}>um convite</span><strong style={{ display: "block", fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "30px", fontWeight: 400, lineHeight: "0.95" }}>Acenda sua<br /><em style={{ color: "#e2c875", fontStyle: "italic" }}>experiência.</em></strong><button onClick={() => openWhatsApp()} style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginTop: "25px", paddingBottom: "7px", border: 0, borderBottom: "1px solid #d4af37", background: "transparent", color: "#f5efe6", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.09em", cursor: "pointer" }}>Falar com a gente <Icon name="arrow" size={16} /></button></div></div><div className="footer-bottom" style={{ minHeight: "42px", paddingTop: "20px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px", borderTop: "1px solid rgba(245,239,230,0.14)", color: "rgba(245,239,230,0.4)", fontSize: "9px" }}><span>© 2024 Luminosity Candles. Todos os direitos reservados.</span><span>Privacidade &nbsp;·&nbsp; Termos</span><span style={{ display: "flex", alignItems: "center", gap: "5px", color: "#d4af37" }}>feito com intenção <Icon name="heart" size={13} /></span></div></div></footer>
 
-      <button className="floating-whatsapp" onClick={() => openWhatsApp()}><span className="floating-icon"><Icon name="message" size={20} /></span><span className="floating-label"><small>fale conosco</small><strong>pelo WhatsApp</strong></span></button>
+      <button className="floating-whatsapp" onClick={() => openWhatsApp()} style={{ position: "fixed", zIndex: 20, right: "25px", bottom: "24px", minWidth: "181px", minHeight: "56px", padding: "8px 17px 8px 8px", display: "flex", alignItems: "center", gap: "10px", border: "1px solid rgba(212,175,55,0.5)", borderRadius: "40px", background: "#3b2e22", color: "#f5efe6", boxShadow: "0 12px 28px rgba(59,46,34,0.24)", cursor: "pointer", transition: "transform 0.2s, background 0.2s" }}>
+        <span className="floating-icon" style={{ width: "39px", height: "39px", display: "grid", placeItems: "center", borderRadius: "50%", background: "#d4af37", color: "#3b2e22" }}><Icon name="message" size={20} /></span>
+        <span className="floating-label" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "3px", textAlign: "left" }}>
+          <small style={{ color: "#e2c875", fontSize: "8px", letterSpacing: "0.13em", textTransform: "uppercase" }}>fale conosco</small>
+          <strong style={{ fontSize: "10px", letterSpacing: "0.07em", textTransform: "uppercase" }}>pelo WhatsApp</strong>
+        </span>
+      </button>
 
-      {leadOpen && <div className="lead-backdrop" role="presentation"><div className="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title"><button className="modal-close" onClick={closeLead} aria-label="Fechar"><Icon name="x" size={19} /></button><div className="modal-image"><div className="modal-image-copy">uma pausa<br /><em>só sua</em></div></div><div className="lead-content">{!leadSent ? <><div className="section-kicker">um presente para você</div><h2 id="lead-title">Receba um pouco<br /><em>mais de luminosity.</em></h2><p>Novos aromas, rituais e condições especiais direto no seu WhatsApp ou e-mail.</p><form onSubmit={submitLead}><input required placeholder="Seu nome" value={leadForm.name} onChange={(event) => setLeadForm({ ...leadForm, name: event.target.value })} /><input required placeholder="Seu WhatsApp" type="tel" value={leadForm.whatsapp} onChange={(event) => setLeadForm({ ...leadForm, whatsapp: event.target.value })} /><input placeholder="Seu melhor e-mail" type="email" value={leadForm.email} onChange={(event) => setLeadForm({ ...leadForm, email: event.target.value })} /><button className="button button-dark" type="submit">Quero receber <Icon name="arrow" size={16} /></button></form><small className="form-note"><Icon name="check" size={13} /> Sem spam. Só coisas bonitas.</small></> : <div className="lead-success"><span><Icon name="check" size={25} /></span><h2>Você está na nossa lista.</h2><p>Obrigada, {leadForm.name || "por estar aqui"}. Prepare um cantinho especial: vem coisa bonita por aí.</p><button className="button button-dark" onClick={closeLead}>Continuar explorando <Icon name="arrow" size={16} /></button></div>}</div></div></div>}
-      {toast && <div className="toast-message"><Icon name="check" size={16} /> {toast}</div>}
+      {leadOpen && <div className="lead-backdrop" role="presentation" style={{ position: "fixed", zIndex: 40, inset: 0, display: "grid", placeItems: "center", padding: "20px", background: "rgba(45,35,27,0.74)", backdropFilter: "blur(5px)" }}><div className="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title" style={{ position: "relative", width: "min(810px, 100%)", minHeight: "460px", display: "grid", gridTemplateColumns: "0.86fr 1.14fr", background: "#f5efe6", boxShadow: "0 25px 80px rgba(0,0,0,0.3)" }}><button className="modal-close" onClick={closeLead} aria-label="Fechar" style={{ position: "absolute", zIndex: 2, top: "15px", right: "15px", width: "32px", height: "32px", display: "grid", placeItems: "center", border: "1px solid rgba(255,255,255,0.45)", borderRadius: "50%", background: "rgba(59,46,34,0.22)", color: "#ffffff", cursor: "pointer" }}><Icon name="x" size={19} /></button><div className="modal-image" style={{ position: "relative", minHeight: "460px", backgroundImage: "linear-gradient(180deg, rgba(59,46,34,0.08), rgba(59,46,34,0.6)), url('/images/luminosity-hero.jpg')", backgroundPosition: "center", backgroundSize: "cover" }}><div className="modal-image-copy" style={{ position: "absolute", left: "30px", bottom: "28px", color: "#ffffff", fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "27px", lineHeight: "0.9" }}>uma pausa<br /><em style={{ color: "#e2c875", fontStyle: "italic" }}>só sua</em></div></div><div className="lead-content" style={{ padding: "59px 53px 40px" }}>{!leadSent ? <><div className="section-kicker" style={{ color: "#7a7a59", fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>um presente para você</div><h2 id="lead-title" style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "clamp(34px, 4vw, 49px)", fontWeight: 400, margin: "23px 0 15px", color: "#3b2e22" }}>Receba um pouco<br /><em style={{ color: "#d4af37", fontStyle: "italic" }}>mais de luminosity.</em></h2><p style={{ maxWidth: "290px", color: "#665545", fontSize: "12px", lineHeight: "1.7" }}>Novos aromas, rituais e condições especiais direto no seu WhatsApp ou e-mail.</p><form onSubmit={submitLead} style={{ display: "flex", flexDirection: "column", gap: "9px", marginTop: "23px" }}><input required placeholder="Seu nome" value={leadForm.name} onChange={(event) => setLeadForm({ ...leadForm, name: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><input required placeholder="Seu WhatsApp" type="tel" value={leadForm.whatsapp} onChange={(event) => setLeadForm({ ...leadForm, whatsapp: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><input placeholder="Seu melhor e-mail" type="email" value={leadForm.email} onChange={(event) => setLeadForm({ ...leadForm, email: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><button className="button button-dark" type="submit" style={{ alignSelf: "flex-start", marginTop: "5px", minHeight: "47px", padding: "0 20px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "19px", border: "1px solid transparent", background: "#3b2e22", color: "#f5efe6", fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.2s, background 0.2s, color 0.2s" }}>Quero receber <Icon name="arrow" size={16} /></button></form><small className="form-note" style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "13px", color: "#7a7a59", fontSize: "9px" }}><Icon name="check" size={13} /> Sem spam. Só coisas bonitas.</small></> : <div className="lead-success" style={{ paddingTop: "27px" }}><span style={{ width: "49px", height: "49px", display: "grid", placeItems: "center", borderRadius: "50%", background: "#d4af37", color: "#3b2e22" }}><Icon name="check" size={25} /></span><h2 style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "clamp(34px, 4vw, 49px)", fontWeight: 400, margin: "23px 0 15px", color: "#3b2e22" }}>Você está na nossa lista.</h2><p style={{ color: "#665545", fontSize: "12px", lineHeight: "1.7" }}>Obrigada, {leadForm.name || "por estar aqui"}. Prepare um cantinho especial: vem coisa bonita por aí.</p><button className="button button-dark" onClick={closeLead} style={{ marginTop: "10px", minHeight: "47px", padding: "0 20px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "19px", border: "1px solid transparent", background: "#3b2e22", color: "#f5efe6", fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.2s, background 0.2s, color 0.2s" }}>Continuar explorando <Icon name="arrow" size={16} /></button></div>}</div></div></div>}
+      {toast && <div className="toast-message" style={{ position: "fixed", zIndex: 45, right: "25px", bottom: "94px", maxWidth: "calc(100% - 50px)", padding: "13px 17px", display: "flex", alignItems: "center", gap: "9px", background: "#7a7a59", color: "#ffffff", boxShadow: "0 7px 20px rgba(59,46,34,0.22)", fontSize: "11px" }}><Icon name="check" size={16} /> {toast}</div>}
     </main>
   );
 }
