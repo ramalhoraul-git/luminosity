@@ -284,9 +284,7 @@ export default function HomePage() {
   return (
     <main className="site-shell" id="inicio">
 
-      {/* ============================================================
-      HERO SECTION
-      ============================================================ */}
+      {/* HERO SECTION */}
       <section className="hero-section">
         <div className="hero-image" aria-hidden="true" />
         <div className="hero-overlay" />
@@ -314,6 +312,7 @@ export default function HomePage() {
         <div className="hero-stamp"><span>feito<br />à mão</span><Icon name="leaf" size={20} /></div>
       </section>
 
+      {/* PROMISE STRIP */}
       <section className="promise-strip">
         <div className="content-width promise-grid">
           <div className="promise-intro"><span className="gold-rule" /><p>Um cuidado em cada detalhe</p></div>
@@ -323,6 +322,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* INTRO SECTION */}
       <section className="intro-section content-width" id="sobre">
         <div className="section-kicker">01 / a essência</div>
         <div className="intro-grid">
@@ -337,6 +337,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CATALOG SECTION */}
       <section className="catalog-section" id="velas">
         <div className="content-width">
           <div className="section-heading catalog-heading">
@@ -362,6 +363,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* SENSORY SECTION */}
       <section className="sensory-section" id="aromas">
         <div className="content-width sensory-grid">
           <div className="sensory-copy"><div className="section-kicker light-kicker">03 / notas e intenções</div><h2>O poder simbólico<br /><em>das essências.</em></h2><p>Os aromas carregam histórias e sensações. Escolha o que deseja convidar para o seu espaço — sem pressa, sem regras, só presença.</p><button className="text-link light-link" onClick={() => openWhatsApp("Olá! ✨ Vim pelo site e gostaria de uma ajuda para escolher uma fragrância.")}><span className="round-icon"><Icon name="message" size={16} /></span> Me ajude a escolher</button></div>
@@ -375,6 +377,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* QUIZ SECTION */}
       <section className="quiz-section content-width" id="quiz">
         <div className="quiz-card">
           <div className="quiz-orb orb-one" /><div className="quiz-orb orb-two" />
@@ -386,6 +389,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* KITS SECTION */}
       <section className="kits-section" id="kits">
         <div className="content-width">
           <div className="section-heading kits-heading"><div><div className="section-kicker">04 / experiências</div><h2>Acenda junto.<br /><em>Compartilhe a luz.</em></h2></div><p>Para criar momentos maiores — ou presentear alguém com uma experiência que continua depois da chama.</p></div>
@@ -397,18 +401,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* GIFT SECTION */}
       <section className="gift-section" id="presentes">
         <div className="gift-image" aria-hidden="true" />
         <div className="gift-overlay" />
         <div className="content-width gift-content"><div className="section-kicker light-kicker">05 / para guardar na memória</div><h2>Presentear é criar<br /><em>memórias.</em></h2><p>Para aniversário, casa nova, romance ou simplesmente porque alguém merece um pouco de luz hoje.</p><button className="button button-outline-light" onClick={() => openWhatsApp("Olá! ✨ Gostaria de ajuda para escolher um presente Luminosity.")}>Me ajude a escolher <Icon name="arrow" size={17} /></button><div className="gift-categories"><span><Icon name="gift" size={16} /> Aniversário</span><span><Icon name="heart" size={16} /> Romance</span><span><Icon name="home" size={16} /> Casa nova</span><span><Icon name="sparkle" size={16} /> Autocuidado</span></div></div>
       </section>
 
+      {/* TESTIMONIAL SECTION */}
       <section className="testimonial-section content-width">
         <div className="section-kicker">06 / quem sente, fica</div>
         <div className="testimonial-grid"><div><h2>Quem experimenta,<br /><em>se apaixona.</em></h2><div className="stars">★★★★★</div></div><blockquote>“Minha casa ficou com outra atmosfera. O aroma é maravilhoso e a embalagem chegou tão linda que parecia um presente para mim mesma.”<footer><strong>Marina A.</strong><span>• Belo Horizonte, MG</span></footer></blockquote></div>
         <div className="testimonial-dots"><span className="active" /><span /><span /><small>01 / 03</small></div>
       </section>
 
+      {/* INSTAGRAM SECTION */}
       <section className="instagram-section">
         <div className="content-width">
           <div className="instagram-heading"><div><div className="section-kicker">07 / por perto</div><h2>Siga a Luminosity<br /><em>no seu dia a dia.</em></h2></div><div><p>Rituais, bastidores e um pouco de luz no seu feed.</p><a className="underlined-link" href="https://instagram.com/luminositycandles" target="_blank" rel="noreferrer">@luminositycandles <Icon name="arrow" size={16} /></a></div></div>
@@ -416,18 +423,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* FAQ SECTION */}
       <section className="faq-section content-width" id="faq">
         <div className="faq-heading"><div className="section-kicker">08 / perguntas frequentes</div><h2>Ficou alguma<br /><em>dúvida?</em></h2><p>Se a resposta não estiver aqui, é só chamar a gente.</p><button className="underlined-link" onClick={() => openWhatsApp("Olá! ✨ Vim pelo site e fiquei com uma dúvida sobre as velas.")}>Falar com a Luminosity <Icon name="arrow" size={16} /></button></div>
         <div className="faq-list">{faqItems.map((item, index) => <div className={`faq-item ${openFaq === index ? "open" : ""}`} key={item.question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>{item.question}</span><span className="faq-toggle"><Icon name={openFaq === index ? "x" : "plus"} size={17} /></span></button>{openFaq === index && <p>{item.answer}</p>}</div>)}</div>
       </section>
 
+      {/* CONTACT SECTION */}
       <section className="contact-section" id="contato">
         <div className="content-width contact-inner"><div className="contact-copy"><div className="section-kicker light-kicker">09 / estamos aqui</div><h2>Ainda está em dúvida?</h2><p>Escolher uma fragrância pode ser uma experiência pessoal. Nossa equipe pode ajudar você a encontrar a vela que combina com o seu momento — ou com quem você deseja presentear.</p><button className="button button-gold" onClick={() => openWhatsApp("Olá! ✨ Vim pelo site da Luminosity e gostaria de conversar com vocês.")}>Falar com a Luminosity <Icon name="arrow" size={17} /></button></div><div className="contact-orbit"><span className="orbit-word">acenda</span><span className="orbit-circle"><Icon name="sparkle" size={28} /></span><span className="orbit-word orbit-bottom">sua experiência</span></div></div>
       </section>
 
-      {/* ============================================================
-      LEAD MODAL
-      ============================================================ */}
+      {/* LEAD MODAL */}
       {leadOpen && <div className="lead-backdrop" role="presentation" style={{ position: "fixed", zIndex: 40, inset: 0, display: "grid", placeItems: "center", padding: "20px", background: "rgba(45,35,27,0.74)", backdropFilter: "blur(5px)" }}><div className="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title" style={{ position: "relative", width: "min(810px, 100%)", minHeight: "460px", display: "grid", gridTemplateColumns: "0.86fr 1.14fr", background: "#f5efe6", boxShadow: "0 25px 80px rgba(0,0,0,0.3)" }}><button className="modal-close" onClick={closeLead} aria-label="Fechar" style={{ position: "absolute", zIndex: 2, top: "15px", right: "15px", width: "32px", height: "32px", display: "grid", placeItems: "center", border: "1px solid rgba(255,255,255,0.45)", borderRadius: "50%", background: "rgba(59,46,34,0.22)", color: "#ffffff", cursor: "pointer" }}><Icon name="x" size={19} /></button><div className="modal-image" style={{ position: "relative", minHeight: "460px", backgroundImage: "linear-gradient(180deg, rgba(59,46,34,0.08), rgba(59,46,34,0.6)), url('/images/luminosity-hero.jpg')", backgroundPosition: "center", backgroundSize: "cover" }}><div className="modal-image-copy" style={{ position: "absolute", left: "30px", bottom: "28px", color: "#ffffff", fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "27px", lineHeight: "0.9" }}>uma pausa<br /><em style={{ color: "#e2c875", fontStyle: "italic" }}>só sua</em></div></div><div className="lead-content" style={{ padding: "59px 53px 40px" }}>{!leadSent ? <><div className="section-kicker" style={{ color: "#7a7a59", fontSize: "10px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase" }}>um presente para você</div><h2 id="lead-title" style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "clamp(34px, 4vw, 49px)", fontWeight: 400, margin: "23px 0 15px", color: "#3b2e22" }}>Receba um pouco<br /><em style={{ color: "#d4af37", fontStyle: "italic" }}>mais de luminosity.</em></h2><p style={{ maxWidth: "290px", color: "#665545", fontSize: "12px", lineHeight: "1.7" }}>Novos aromas, rituais e condições especiais direto no seu WhatsApp ou e-mail.</p><form onSubmit={submitLead} style={{ display: "flex", flexDirection: "column", gap: "9px", marginTop: "23px" }}><input required placeholder="Seu nome" value={leadForm.name} onChange={(event) => setLeadForm({ ...leadForm, name: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><input required placeholder="Seu WhatsApp" type="tel" value={leadForm.whatsapp} onChange={(event) => setLeadForm({ ...leadForm, whatsapp: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><input placeholder="Seu melhor e-mail" type="email" value={leadForm.email} onChange={(event) => setLeadForm({ ...leadForm, email: event.target.value })} style={{ width: "100%", height: "39px", padding: "0 12px", border: "1px solid rgba(59,46,34,0.22)", outline: "none", background: "rgba(255,255,255,0.35)", color: "#3b2e22", fontSize: "11px" }} /><button className="button button-dark" type="submit" style={{ alignSelf: "flex-start", marginTop: "5px", minHeight: "47px", padding: "0 20px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "19px", border: "1px solid transparent", background: "#3b2e22", color: "#f5efe6", fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.2s, background 0.2s, color 0.2s" }}>Quero receber <Icon name="arrow" size={16} /></button></form><small className="form-note" style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "13px", color: "#7a7a59", fontSize: "9px" }}><Icon name="check" size={13} /> Sem spam. Só coisas bonitas.</small></> : <div className="lead-success" style={{ paddingTop: "27px" }}><span style={{ width: "49px", height: "49px", display: "grid", placeItems: "center", borderRadius: "50%", background: "#d4af37", color: "#3b2e22" }}><Icon name="check" size={25} /></span><h2 style={{ fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif', fontSize: "clamp(34px, 4vw, 49px)", fontWeight: 400, margin: "23px 0 15px", color: "#3b2e22" }}>Você está na nossa lista.</h2><p style={{ color: "#665545", fontSize: "12px", lineHeight: "1.7" }}>Obrigada, {leadForm.name || "por estar aqui"}. Prepare um cantinho especial: vem coisa bonita por aí.</p><button className="button button-dark" onClick={closeLead} style={{ marginTop: "10px", minHeight: "47px", padding: "0 20px", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "19px", border: "1px solid transparent", background: "#3b2e22", color: "#f5efe6", fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", transition: "transform 0.2s, background 0.2s, color 0.2s" }}>Continuar explorando <Icon name="arrow" size={16} /></button></div>}</div></div></div>}
       {toast && <div className="toast-message" style={{ position: "fixed", zIndex: 45, right: "25px", bottom: "94px", maxWidth: "calc(100% - 50px)", padding: "13px 17px", display: "flex", alignItems: "center", gap: "9px", background: "#7a7a59", color: "#ffffff", boxShadow: "0 7px 20px rgba(59,46,34,0.22)", fontSize: "11px" }}><Icon name="check" size={16} /> {toast}</div>}
     </main>
