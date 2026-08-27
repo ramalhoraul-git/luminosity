@@ -5,9 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 export const metadata: Metadata = {
-  title: "MT Fight - Onde Campeões São Forjados",
-  description: "O maior centro de artes marciais de Belo Horizonte. Jiu-Jitsu, Muay Thai e Boxe. Treinamento Kids, Feminino e Método de Emagrecimento.",
-  keywords: "artes marciais BH, jiu-jitsu, muay thai, boxe, treino kids, treino feminino, emagrecimento, campeões",
+  title: "Luminosity Candles - Velas Aromáticas",
+  description: "Velas aromáticas feitas com amor para transformar ambientes e despertar os sentidos.",
 };
 
 export default function RootLayout({
@@ -17,9 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-[#0a1628] text-white min-h-screen flex flex-col">
+      <body className="bg-[#f5efe6] text-[#3b2e22] min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 pt-20">
+        <main className="flex-1">
           {children}
         </main>
         <Footer />
