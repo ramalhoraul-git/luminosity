@@ -8,11 +8,18 @@ export function WhatsAppButton() {
       href={`https://wa.me/${phoneNumber}?text=Olá! ✨ Vim pelo site da Luminosity Candles e gostaria de conhecer as velas.`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:p-4 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110"
       aria-label="WhatsApp"
+      style={{
+        width: "52px",
+        height: "52px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
     >
       <svg
-        className="w-8 h-8"
+        className="w-6 h-6 sm:w-8 sm:h-8"
         fill="currentColor"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
