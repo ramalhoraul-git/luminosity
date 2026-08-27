@@ -2,10 +2,27 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Fecha o menu ao redimensionar para desktop
+  useEffect(() => {
+    if (!isMobile && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [isMobile, isMenuOpen]);
 
   const menuItems = [
     { href: "/", label: "HOME" },
@@ -17,7 +34,6 @@ export function Header() {
     { href: "/contato", label: "FALE CONOSCO" },
   ];
 
-  // COR DO FUNDO = #F3EBDD (creme/areia/champagne) — mesma da logo
   const headerBgColor = "#F3EBDD";
 
   return (
@@ -28,47 +44,55 @@ export function Header() {
         borderBottom: "1px solid rgba(0,0,0,0.08)"
       }}
     >
-      {/* PROMO BAR — FRETE FIXO + VELAS AROMÁTICAS + BH */}
+      {/* PROMO BAR — RESPONSIVA */}
       <div 
-        className="w-full"
+        className="w-full overflow-hidden"
         style={{ 
-          height: "31px", 
-          display: "flex", 
-          justifyContent: "center", 
-          alignItems: "center", 
-          gap: "32px", 
-          fontSize: "9px", 
-          fontWeight: 700, 
-          letterSpacing: "0.12em",
+          minHeight: "31px",
+          padding: "4px 12px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           backgroundColor: "#2d231b",
           color: "#f5efe6"
         }}
       >
-        <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-          ✨ Frete fixo de R$ 12,90 para todo o Brasil
-        </span>
-        <span style={{ opacity: 0.75, display: "inline-flex", alignItems: "center", gap: "8px" }}>
-          Velas aromáticas feitas com amor <i style={{ color: "#d4af37", fontStyle: "normal", padding: "0 8px" }}>•</i> BH — MG
-        </span>
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[8px] sm:text-[9px] font-bold tracking-[0.12em] text-center">
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
+            ✨ Frete fixo de R$ 12,90
+          </span>
+          <span className="hidden xs:flex items-center gap-1.5 whitespace-nowrap opacity-75">
+            <span className="hidden sm:inline">Velas aromáticas feitas com amor</span>
+            <span className="sm:hidden">Velas artesanais</span>
+            <i style={{ color: "#d4af37", fontStyle: "normal", padding: "0 4px" }}>•</i>
+            BH — MG
+          </span>
+        </div>
       </div>
 
-      {/* HEADER PRINCIPAL — TODA A ÁREA COM A MESMA COR #F3EBDD */}
+      {/* HEADER PRINCIPAL */}
       <div className="w-full" style={{ backgroundColor: headerBgColor }}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-[82px]" style={{ backgroundColor: headerBgColor }}>
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="flex items-center justify-between h-[64px] sm:h-[72px] md:h-[82px]" style={{ backgroundColor: headerBgColor }}>
             
-            {/* LOGO — FUNDO #F3EBDD (mesma cor do menu) */}
-            <Link href="/" className="flex items-center flex-shrink-0" style={{ backgroundColor: headerBgColor }}>
+            {/* LOGO — RESPONSIVA */}
+            <Link 
+              href="/" 
+              className="flex items-center flex-shrink-0" 
+              style={{ backgroundColor: headerBgColor }}
+            >
               <Image
                 src="/logo-principal.png"
-                alt="Luminosity Candles - Velas Aromáticas"
-                width={160}
-                height={55}
-                className="h-[55px] w-auto object-contain"
+                alt="Luminosity Candles"
+                width={120}
+                height={40}
+                className="h-[36px] sm:h-[44px] md:h-[55px] w-auto object-contain"
                 priority
                 style={{ 
-                  height: "55px", 
+                  height: "auto",
+                  maxHeight: "55px",
                   width: "auto",
+                  maxWidth: "140px",
                   backgroundColor: headerBgColor,
                   display: "block"
                 }}
@@ -76,12 +100,12 @@ export function Header() {
             </Link>
 
             {/* MENU DESKTOP */}
-            <nav className="hidden lg:flex items-center gap-8" style={{ backgroundColor: headerBgColor }}>
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-8" style={{ backgroundColor: headerBgColor }}>
               {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="font-medium transition-colors text-xs uppercase tracking-wider"
+                  className="font-medium transition-colors text-[10px] xl:text-xs uppercase tracking-wider whitespace-nowrap"
                   style={{ 
                     color: "#3b2e22",
                     opacity: 0.8,
@@ -95,10 +119,10 @@ export function Header() {
               ))}
               <button
                 onClick={() => window.open(`https://wa.me/5531999999999?text=Olá! ✨ Vim pelo site da Luminosity Candles e gostaria de conhecer as velas.`, "_blank")}
-                className="font-medium transition-colors text-xs uppercase tracking-wider"
+                className="font-medium transition-colors text-[10px] xl:text-xs uppercase tracking-wider whitespace-nowrap"
                 style={{ 
                   border: "1px solid #d4af37",
-                  padding: "8px 16px",
+                  padding: "6px 14px",
                   borderRadius: "4px",
                   color: "#3b2e22",
                   backgroundColor: "transparent",
@@ -111,11 +135,12 @@ export function Header() {
               </button>
             </nav>
 
-            {/* BOTÃO MOBILE */}
+            {/* BOTÃO HAMBÚRGUER — RESPONSIVO */}
             <button
-              className="lg:hidden p-2"
+              className="lg:hidden p-2 -mr-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Abrir menu"
+              aria-expanded={isMenuOpen}
               style={{ 
                 backgroundColor: "transparent", 
                 border: "none", 
@@ -123,7 +148,7 @@ export function Header() {
                 color: "#3b2e22"
               }}
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -133,13 +158,16 @@ export function Header() {
             </button>
           </div>
 
-          {/* MENU MOBILE */}
+          {/* MENU MOBILE — OVERLAY RESPONSIVO */}
           {isMenuOpen && (
-            <nav className="lg:hidden py-4 border-t" style={{ 
-              borderColor: "rgba(59,46,34,0.1)",
-              backgroundColor: headerBgColor
-            }}>
-              <div className="flex flex-col gap-2" style={{ backgroundColor: headerBgColor }}>
+            <nav 
+              className="lg:hidden py-4 border-t overflow-y-auto max-h-[calc(100vh-120px)]"
+              style={{ 
+                borderColor: "rgba(59,46,34,0.1)",
+                backgroundColor: headerBgColor
+              }}
+            >
+              <div className="flex flex-col gap-1" style={{ backgroundColor: headerBgColor }}>
                 {menuItems.map((item) => (
                   <Link
                     key={item.href}
@@ -151,8 +179,6 @@ export function Header() {
                       backgroundColor: "transparent"
                     }}
                     onClick={() => setIsMenuOpen(false)}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(212,175,55,0.1)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
                   >
                     {item.label}
                   </Link>
@@ -162,10 +188,9 @@ export function Header() {
                     window.open(`https://wa.me/5531999999999?text=Olá! ✨ Vim pelo site da Luminosity Candles e gostaria de conhecer as velas.`, "_blank");
                     setIsMenuOpen(false);
                   }}
-                  className="font-medium transition-colors text-sm uppercase tracking-wider py-3 px-4 rounded text-center"
+                  className="font-medium transition-colors text-sm uppercase tracking-wider py-3 px-4 rounded text-center mt-2"
                   style={{ 
                     border: "1px solid #d4af37",
-                    marginTop: "8px",
                     color: "#3b2e22",
                     backgroundColor: "transparent",
                     cursor: "pointer"
