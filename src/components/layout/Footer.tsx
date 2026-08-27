@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -6,20 +7,17 @@ export function Footer() {
   return (
     <footer className="bg-[#2d231b] text-[#f5efe6] border-t border-[#d4af37]/20 py-12 mt-auto">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          
           {/* Coluna 1 - Logo */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border-2 border-[#d4af37] flex items-center justify-center text-[#d4af37]">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="m12 3-1.4 5.6L5 10l5.6 1.4L12 17l1.4-5.6L19 10l-5.6-1.4L12 3Z" />
-                </svg>
-              </div>
-              <div>
-                <span className="block font-serif text-xl tracking-wide">Luminosity</span>
-                <span className="block text-[8px] uppercase tracking-[0.36em] text-[#d4af37]">Candles</span>
-              </div>
-            </div>
+            <Image
+              src="/logo-principal.png"
+              alt="Luminosity Candles"
+              width={140}
+              height={48}
+              className="h-12 w-auto object-contain"
+            />
             <p className="text-[#c4b8a8] text-sm">
               Velas aromáticas feitas com amor.<br />Para iluminar o que importa.
             </p>
