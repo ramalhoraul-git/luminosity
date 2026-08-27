@@ -1,14 +1,14 @@
 "use client";
 
 export function WhatsAppButton() {
-  const phoneNumber = "5531994338005";
+  const phoneNumber = "5531999999999";
 
   return (
     <a
-      href={`https://wa.me/${phoneNumber}?text=Olá! Vim pelo site da MT Fight e quero agendar minha aula experimental! 🥊`}
+      href={`https://wa.me/${phoneNumber}?text=Olá! ✨ Vim pelo site da Luminosity Candles e gostaria de conhecer as velas.`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110"
+      className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl z-50 transition-all duration-300 hover:scale-110"
       aria-label="WhatsApp"
     >
       <svg
