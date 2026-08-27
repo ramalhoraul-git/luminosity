@@ -17,7 +17,6 @@ export function Header() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Fecha o menu ao redimensionar para desktop
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
       setIsMenuOpen(false);
@@ -44,7 +43,7 @@ export function Header() {
         borderBottom: "1px solid rgba(0,0,0,0.08)"
       }}
     >
-      {/* PROMO BAR — RESPONSIVA */}
+      {/* PROMO BAR */}
       <div 
         className="w-full overflow-hidden"
         style={{ 
@@ -75,7 +74,7 @@ export function Header() {
         <div className="container mx-auto px-3 sm:px-4">
           <div className="flex items-center justify-between h-[64px] sm:h-[72px] md:h-[82px]" style={{ backgroundColor: headerBgColor }}>
             
-            {/* LOGO — RESPONSIVA */}
+            {/* LOGO */}
             <Link 
               href="/" 
               className="flex items-center flex-shrink-0" 
@@ -135,7 +134,7 @@ export function Header() {
               </button>
             </nav>
 
-            {/* BOTÃO HAMBÚRGUER — RESPONSIVO */}
+            {/* BOTÃO HAMBÚRGUER */}
             <button
               className="lg:hidden p-2 -mr-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -158,7 +157,7 @@ export function Header() {
             </button>
           </div>
 
-          {/* MENU MOBILE — OVERLAY RESPONSIVO */}
+          {/* MENU MOBILE */}
           {isMenuOpen && (
             <nav 
               className="lg:hidden py-4 border-t overflow-y-auto max-h-[calc(100vh-120px)]"
