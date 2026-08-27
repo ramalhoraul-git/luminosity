@@ -17,18 +17,21 @@ export function Header() {
     { href: "/contato", label: "FALE CONOSCO" },
   ];
 
+  // COR DO FUNDO = #3b2e22 (mesma cor da logo)
+  const headerBgColor = "#3b2e22";
+
   return (
     <header 
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 w-full"
       style={{ 
-        backgroundColor: "#3b2e22", 
+        backgroundColor: headerBgColor,
         color: "#ffffff",
-        borderBottom: "1px solid rgba(255,255,255,0.18)"
+        borderBottom: "1px solid rgba(255,255,255,0.08)"
       }}
     >
       {/* PROMO BAR — FRETE FIXO + VELAS AROMÁTICAS + BH */}
       <div 
-        className="promo-bar"
+        className="w-full"
         style={{ 
           height: "31px", 
           display: "flex", 
@@ -50,12 +53,12 @@ export function Header() {
         </span>
       </div>
 
-      {/* HEADER PRINCIPAL */}
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-[82px]">
+      {/* HEADER PRINCIPAL — COR DA LOGO */}
+      <div className="container mx-auto px-4" style={{ backgroundColor: headerBgColor }}>
+        <div className="flex items-center justify-between h-[82px]" style={{ backgroundColor: headerBgColor }}>
           
           {/* LOGO — USANDO A IMAGEM logo-principal.png */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0" style={{ backgroundColor: "transparent" }}>
             <Image
               src="/logo-principal.png"
               alt="Luminosity Candles - Velas Aromáticas"
@@ -66,19 +69,22 @@ export function Header() {
               style={{ 
                 height: "55px", 
                 width: "auto",
-                background: "transparent"
+                backgroundColor: "transparent"
               }}
             />
           </Link>
 
-          {/* MENU DESKTOP */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* MENU DESKTOP — COR DA LOGO */}
+          <nav className="hidden lg:flex items-center gap-8" style={{ backgroundColor: headerBgColor }}>
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="text-white hover:text-[#d4af37] font-medium transition-colors text-xs uppercase tracking-wider"
-                style={{ opacity: 0.86 }}
+                style={{ 
+                  opacity: 0.86,
+                  backgroundColor: "transparent"
+                }}
               >
                 {item.label}
               </Link>
@@ -91,7 +97,7 @@ export function Header() {
                 padding: "8px 16px",
                 borderRadius: "4px",
                 opacity: 0.86,
-                background: "transparent",
+                backgroundColor: "transparent",
                 cursor: "pointer"
               }}
             >
@@ -104,7 +110,12 @@ export function Header() {
             className="lg:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Abrir menu"
-            style={{ background: "transparent", border: "none", cursor: "pointer" }}
+            style={{ 
+              backgroundColor: "transparent", 
+              border: "none", 
+              cursor: "pointer",
+              color: "#ffffff"
+            }}
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
@@ -116,16 +127,22 @@ export function Header() {
           </button>
         </div>
 
-        {/* MENU MOBILE */}
+        {/* MENU MOBILE — COR DA LOGO */}
         {isMenuOpen && (
-          <nav className="lg:hidden py-4 border-t" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-            <div className="flex flex-col gap-2">
+          <nav className="lg:hidden py-4 border-t" style={{ 
+            borderColor: "rgba(255,255,255,0.08)",
+            backgroundColor: headerBgColor
+          }}>
+            <div className="flex flex-col gap-2" style={{ backgroundColor: headerBgColor }}>
               {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="text-white hover:text-[#d4af37] font-medium transition-colors text-sm uppercase tracking-wider py-3 px-4 rounded"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+                  style={{ 
+                    borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    backgroundColor: "transparent"
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -140,7 +157,7 @@ export function Header() {
                 style={{ 
                   border: "1px solid #d4af37",
                   marginTop: "8px",
-                  background: "transparent",
+                  backgroundColor: "transparent",
                   cursor: "pointer"
                 }}
               >
