@@ -1,5 +1,6 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
+import * as schema from "./schema";
 
 // ✅ Verifica se está em ambiente de build da Vercel
 const isVercelBuild = process.env.NEXT_PHASE === 'phase-production-build';
@@ -28,7 +29,7 @@ if (process.env.NODE_ENV !== "production" && pool) {
 }
 
 // ✅ Exporta db apenas se tiver pool
-export const db = pool ? drizzle(pool) : null;
+export const db = pool ? drizzle(pool, { schema }) : null;
 
 // ✅ Helper para verificar se banco está disponível
 export const isDbAvailable = () => !!db && !!process.env.DATABASE_URL;
