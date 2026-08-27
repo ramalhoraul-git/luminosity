@@ -19,7 +19,7 @@ export function Header() {
 
   return (
     <header 
-      className="fixed top-0 left-0 right-0 z-50 shadow-md"
+      className="fixed top-0 left-0 right-0 z-50"
       style={{ 
         backgroundColor: "#3b2e22", 
         color: "#ffffff",
@@ -54,55 +54,24 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-[82px]">
           
-          {/* LOGO — AUMENTADA + FUNDO TRANSPARENTE */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0" style={{ background: "transparent" }}>
-            <div className="flex items-center gap-3" style={{ background: "transparent" }}>
-              {/* Ícone da Logo */}
-              <div 
-                className="w-[44px] h-[44px] rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ 
-                  border: "2px solid #d4af37",
-                  background: "transparent",
-                  color: "#d4af37"
-                }}
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m12 3-1.4 5.6L5 10l5.6 1.4L12 17l1.4-5.6L19 10l-5.6-1.4L12 3ZM19 16l-.6 2.4L16 19l2.4.6L19 22l.6-2.4L22 19l-2.4-.6L19 16Z" />
-                </svg>
-              </div>
-              
-              {/* Nome da Logo */}
-              <div style={{ background: "transparent" }}>
-                <span 
-                  className="block font-serif tracking-wide"
-                  style={{ 
-                    fontFamily: '"Iowan Old Style", "Baskerville", "Times New Roman", serif',
-                    fontSize: "28px",
-                    letterSpacing: "0.04em",
-                    lineHeight: "1.1",
-                    color: "#ffffff"
-                  }}
-                >
-                  Luminosity
-                </span>
-                <span 
-                  className="block text-[9px] uppercase tracking-[0.36em] text-center"
-                  style={{ 
-                    fontFamily: '"Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif',
-                    fontSize: "9px",
-                    letterSpacing: "0.36em",
-                    opacity: 0.8,
-                    color: "#d4af37",
-                    marginTop: "-4px"
-                  }}
-                >
-                  Candles
-                </span>
-              </div>
-            </div>
+          {/* LOGO — USANDO A IMAGEM logo-principal.png */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+            <Image
+              src="/logo-principal.png"
+              alt="Luminosity Candles - Velas Aromáticas"
+              width={160}
+              height={55}
+              className="h-[55px] w-auto object-contain"
+              priority
+              style={{ 
+                height: "55px", 
+                width: "auto",
+                background: "transparent"
+              }}
+            />
           </Link>
 
-          {/* MENU DESKTOP — CORRIGIDO (SEM "AGENDE SUA AULA") */}
+          {/* MENU DESKTOP */}
           <nav className="hidden lg:flex items-center gap-8">
             {menuItems.map((item) => (
               <Link
